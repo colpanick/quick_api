@@ -75,7 +75,10 @@ class JsonFile(Base):
 
     def post(self, dataset, data):
         records = self.dataset_records(dataset)
-        new_id = max([record["id"] for record in records]) + 1
+        try:
+            new_id = max([record["id"] for record in records]) + 1
+        except ValueError:
+            new_id = 1
         data["id"] = new_id
         records.append(data)
         self.write_json_data()
