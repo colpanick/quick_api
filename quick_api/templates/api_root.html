@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quick API</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid p-0">
+    <div class="container-fluid text-light bg-dark">
+        <h1>Quick API</h1>
+    </div>
+
+    <div class="container mt-4 p-3">
+        <div class="container-fluid p-0 m-3">
+            <div class="container-fluid border bg-secondary text-light">
+                <h3>Datasets</h3>
+            </div>
+            <div class="container-fluid ">
+                <p>
+                    <ul>
+                        {% for dataset in datasets %}
+                            <code><a href="/api/{{ dataset }}"><li>{{ dataset }}</li></a></code>
+                        {% endfor %}
+                    </ul>
+                </p>
+            </div>
+        </div>
+        <div class="container-fluid p-0 m-3">
+            <div class="container-fluid border bg-secondary text-light">
+                <h3>Documenatation</h3>
+            </div>
+            <div class="container">
+                <p>
+                    <ul>
+                    <li>POST, PUT, and PATCH requests should include a <code>Content-Type: application/json</code> header.
+                    Otherwise, it will return a 415 status code and no changes will be made.</li>
+                    <li>JSON "id" fields will be ignored in POST and PATCH requests</li>
+                    </ul>
+                </p>
+                <p>
+                    <h4>Routes</h4>
+                    <code>
+                        <ul>
+                            <li>GET     /api/dataset</li>
+                            <li>GET     /api/dataset/1</li>
+                            <li>POST    /api/dataset</li>
+                            <li>PUT     /api/dataset/1</li>
+                            <li>PATCH   /api/dataset/1</li>
+                            <li>DELETE  /api/dataset/1</li>
+                        </ul>
+                    </code>
+                </p>
+                <p>
+                    <h4>Sort</h4>
+                    <code>
+                        <ul>
+                            <li>GET /api/dataset?_sort=field&_order=asc_or_dsc</li>
+                        </ul>
+                    </code>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
