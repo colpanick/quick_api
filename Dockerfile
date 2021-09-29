@@ -4,7 +4,6 @@ RUN ["mkdir", "/usr/share/quick_api"]
 WORKDIR /usr/share/quick_api
 
 COPY config.py config.py
-COPY data/data.json data.json
 COPY requirements.txt requirements.txt
 COPY quick_api/ quick_api/
 COPY data/ data/

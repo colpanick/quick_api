@@ -56,6 +56,7 @@ class JsonFile(Base):
         return records
 
     def get_all(self, dataset, sort=None, order=None):
+        self.update_json_data()
         records = self.dataset_records(dataset)
 
         if sort:
@@ -64,6 +65,7 @@ class JsonFile(Base):
         return json.dumps(records, indent=self.indent)
 
     def get_record(self, dataset, record_id):
+        self.update_json_data()
         record_id = int(record_id)
         records = self.dataset_records(dataset)
         record = [r for r in records if r["id"] == record_id]
@@ -74,6 +76,7 @@ class JsonFile(Base):
         return json.dumps(record, indent=self.indent)
 
     def post(self, dataset, data):
+        self.update_json_data()
         records = self.dataset_records(dataset)
         try:
             new_id = max([record["id"] for record in records]) + 1
@@ -85,6 +88,7 @@ class JsonFile(Base):
         return json.dumps(data, indent=self.indent)
 
     def _put_patch(self, dataset, record_id, data, is_put):
+        self.update_json_data()
         records = self.dataset_records(dataset)
         record = _record_by_id(records, record_id)
         if not record:
@@ -103,6 +107,7 @@ class JsonFile(Base):
         return self._put_patch(dataset, record_id, data, False)
 
     def delete(self, dataset, record_id):
+        self.update_json_data()
         records = self.dataset_records(dataset)
         record_id = int(record_id)
         new_records = [record for record in records if record["id"] != record_id]
